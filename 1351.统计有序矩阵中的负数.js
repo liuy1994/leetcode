@@ -63,7 +63,12 @@
  * @return {number}
  */
 var countNegatives = function(grid) {
-
+ grid = grid.toString()
+ grid = grid.split('')
+ grid = grid.filter(v => v.indexOf('-') > -1)
+ return grid.length
 };
+
+
 // @lc code=end
 
