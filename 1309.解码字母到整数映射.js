@@ -69,7 +69,21 @@
  * @return {string}
  */
 var freqAlphabets = function(s) {
-
+  let res = ''
+  for (let i=0;i<s.length;i++){
+    if (!s[i+2]) {
+      res += String.fromCharCode(s[i].charCodeAt() + 48)
+    } else {
+      if (s[i+2] !== '#') {
+        res += String.fromCharCode(s[i].charCodeAt() + 48)
+      } else {
+        res += String.fromCharCode('0'.charCodeAt() + 48 + (+`${s[i]}${s[i+1]}`))
+        i = i+2
+      }
+    }
+  }
+  return res;
 };
+// console.log(freqAlphabets('10#'))
 // @lc code=end
 
