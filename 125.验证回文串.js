@@ -37,19 +37,14 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-  s = s.toLowerCase();
-  console.log(s)
-  const reg = /^[A-Za-z0-9]+$/g
   let str = ''
+  s = s.toLowerCase();
   for(let i=0;i<s.length;i++) {
-    console.log(s[i], reg.test(s[i]))
-    if(reg.test(s[i])) {
+    if (('a' <= s[i] && s[i] <= 'z') || ('0' <= s[i] && s[i] <= '9')) {
       str += s[i]
-      console.log(1111, str)
     }
   }
-  console.log(str)
+  return str === str.split('').reverse().join('')
 };
-console.log(isPalindrome('A man, a plan, a canal: Panama'))
 // @lc code=end
 

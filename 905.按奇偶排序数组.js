@@ -43,7 +43,17 @@
  * @return {number[]}
  */
 var sortArrayByParity = function(A) {
-
+  // for (let i=0;i<A.length;i++){
+  //   for(let j=A.length -1;j>i;j--) {
+  //     if (A[i]%2 === 1 && A[j]%2 === 0) {
+  //       [A[i], A[j]] = [A[j], A[i]]
+  //     }
+  //   }
+  // }
+  A = A.sort((a,b) => {
+    return a%2 - b%2
+  })
+  return A
 };
 // @lc code=end
 

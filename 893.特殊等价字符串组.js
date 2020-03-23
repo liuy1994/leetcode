@@ -74,8 +74,31 @@
  * @param {string[]} A
  * @return {number}
  */
-var numSpecialEquivGroups = function(A) {
+var getStr = (str, i) => {
+  return [...str].filter((v, index) => index%2 === i).sort().join('')
+}
 
+var numSpecialEquivGroups = (A) => {
+  let res = [[A[0]]]
+  for(let i=1;i<A.length;i++) {
+    let a = getStr(A[i], 0)
+    let b = getStr(A[i], 1)
+    for(let j=0;j<res.length;j++) {
+      if(a === getStr(res[j][0],0) && b === getStr(res[j][0],1)) {
+        res[j].push(A[i])
+        console.log(11111)
+      } else {
+        res.push([A[i]])
+        console.log(22222)
+      }
+    }
+  }
+  console.log(res)
+  return res.length;
 };
+console.log(numSpecialEquivGroups(['a', 'aa', 'b']))
+
+// console.log(getStr('cdeab', 1))
+// console.log(getStr('abcde', 0))
 // @lc code=end
 
