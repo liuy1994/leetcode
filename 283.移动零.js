@@ -35,7 +35,14 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-
+  let count = 0;
+  for (let i = nums.length-1;i>=0;i--) {
+    if (nums[i] === 0) {
+      count++;
+      nums.splice(i,1)
+    }
+  }
+  nums.splice(nums.length, 0, ...Array.from({length: count}, v => 0))
 };
 // @lc code=end
 
