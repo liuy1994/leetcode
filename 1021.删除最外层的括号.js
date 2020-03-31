@@ -67,8 +67,23 @@
  * @param {string} S
  * @return {string}
  */
-var removeOuterParentheses = function(S) {
-
+var removeOuterParentheses = function(s) {
+  let res = []
+  let stack = []
+  let key = 0
+  for (let i = 0;i < s.length;i++) {
+    if (s[i] === '(') {
+      stack.push(s[i])
+    } else {
+      stack.pop()
+    }
+    if (stack.length === 0) {
+      res.push(s.slice(key, i + 1))
+      key = i + 1
+    }
+  }
+  res = res.map(v => v.slice(1, v.length - 1))
+  return res.join('')
 };
 // @lc code=end
 
