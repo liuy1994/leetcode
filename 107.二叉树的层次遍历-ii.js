@@ -48,32 +48,21 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrderBottom = function(root) {
-  let res = []
+let res = {}
+var levelOrderBottom = function (root, deep = 1) {
+  
+  res[deep] = res[deep] || []
   if (root) {
-    res.unshift([root.val])
-    res.unshift(...fn(root.left, root.right))
-  }
-  return res
-};
-
-function fn (l, r) {
-  let res = []
-  if (!l && !r) {
+    res[deep].push(root.val)
+    if (root.left || root.right) {
+      deep += 1
+      levelOrderBottom(root.left, deep)
+      levelOrderBottom(root.right, deep)
+    }
+  } else {
     return []
   }
-  let leaf = []
-  if (l) {
-    leaf.push(l.val)
-  }
-  if (r) {
-    leaf.push(r.val)
-  }
-  res.unshift(leaf)
-  console.log(r)
-  res.unshift(...fn(l && l.left).concat(fn(l && l.right)).concat(fn(r && r.left).concat(fn(r && r.right))))
-  return res
-  
-}
-// @lc code=end
+  return Object.values(res).reverse()
+};
 
+// @lc code=end
