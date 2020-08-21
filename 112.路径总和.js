@@ -49,5 +49,10 @@
 var hasPathSum = function(root, sum) {
 
 };
+var getSum = function(root, res) {
+    while(root.left !== null || root.right !== null) {
+        
+    }
+}
 // @lc code=end
 

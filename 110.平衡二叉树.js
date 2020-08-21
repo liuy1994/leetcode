@@ -65,7 +65,43 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-
+    let res = true
+    if (!root) {
+        return true
+    }
+    res = Math.abs(getDeep(root.left) - getDeep(root.right)) <= 1
+    res = res && isBalanced(root.left) && isBalanced(root.right)
+    return res
 };
+var getDeep = function(node) {
+    let deep = 1
+    if (node === null) {
+        return 1
+    } else {
+        deep += Math.max(getDeep(node.left), getDeep(node.right))
+    }
+    return deep
+}
 // @lc code=end
 
+const root = {
+    val: 1,
+    left: {
+        val: 2,
+        left: {
+            val: 3,
+            left: {
+                val: 4, left: null, right: null
+            },
+            right: {
+                val: 4, left: null, right: null
+            }
+        },
+        right: {
+            val: 3, left: null, right: null
+        }
+    },
+    right: {
+        val: 2, left: null, right: null
+    }
+}
