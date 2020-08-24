@@ -17,14 +17,9 @@
  * @return {void} Do not return anything, modify node in-place instead.
  */
 
-var deleteNode = function(head) {
-    console.log(JSON.stringify({head,node}))
-    let n = head
-    while(n) {
-        if (n.next.val === node.val) {
-            n.next = n.next.next
-        }
-    }
+var deleteNode = function(node) {
+    node.val = node.next.val
+    node.next = node.next.next
 };
 // @lc code=end
 
