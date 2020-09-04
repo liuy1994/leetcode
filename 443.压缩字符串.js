@@ -18,13 +18,14 @@ var compress = function(chars) {
         if (chars[i] === chars[i-1]) {
             sum++
         } else {
-            chars.splice(i - (sum-1),sum-1,sum.toString())
-            i = i - (sum-2)
-            sum = 1
+            if (sum > 1) {
+                chars.splice(i - (sum-1),sum-1, ...sum.toString().split(''))
+                i = i - (sum-2)
+                sum = 1
+            }
         }
     }
     return chars.length
 };
 
 // @lc code=end
-
