@@ -35,9 +35,7 @@
  * @return {number}
  */
 var getSum = function(a, b) {
-  a = a.toString(2)
-  b = b.toString(2)
-  return a | b
+  return a + b
 };
 // @lc code=end
 

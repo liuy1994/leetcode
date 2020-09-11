@@ -45,14 +45,19 @@
  * @return {number}
  */
 var guessNumber = function(n) {
-    let num = Math.floor(1 +  (n-1)/2)
-    if (guess(num) === -1) {
-      return guessNumber(Math.floor((n+num+1)/2))
+    let l = 1
+    let r = n
+    while(l<=r) {
+      let mid = Math.floor((l+r)/2)
+      let gss = guess(mid)
+      if (gss === 0) {
+        return mid
+      } else if (gss === 1) {
+        l = mid +1
+      } else {
+        r = mid - 1
+      }
     }
-    if (guess(num) === 1) {
-      return guessNumber(Math.floor((num+2)/2))
-    }
-    return num
+    return -1
 };
 // @lc code=end
-
