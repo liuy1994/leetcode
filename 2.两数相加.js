@@ -18,22 +18,8 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-    let res = ''
-    while(l1 || l2) {
-        res = parseInt(l1.val) + parseInt(l2.val) + '-' + res
-        l1 = l1.next
-        l2 = l2.next
-    }
-    console.log(res)
+
 };
 
-function getNum(l) {
-    let res = ''
-    while(l) {
-        res += l.val
-        l = l.next 
-    }
-    return res || 0
-}
 // @lc code=end
 
