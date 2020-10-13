@@ -17,24 +17,28 @@
  * @return {number}
  */
 var minDepth = function(root) {
-    if (root === null) return 0
-    if (root.left === null && root.right === null) return 1
-    else if (root.left === null && root.right !== null) root.left = root.right
-    else if (root.left !== null && root.right === null) root.right = root.left
-    return fn(root)
+  let arr = []
+  let deep = 0
+  let flag = false
+  if (!root) return deep
+  arr.push(root)
+  while(arr.length && !flag) {
+    const len = arr.length
+    deep++
+    for (let i=0;i<len && !flag;i++) {
+      if (arr[i].left || arr[i].right) {
+        if (arr[i].left) arr.push(arr[i].left)
+        if (arr[i].right) arr.push(arr[i].right)
+      } else {
+        flag = true
+      }
+      
+    }
+    arr.splice(0, len)
+  }
+  return deep
 
 };
-function fn(root) {
-    let deep = 0;
-    if (!root) {
-      return deep;
-    } else {
-      deep++;
-      deep += Math.min(fn(root.left), fn(root.right))
-      return deep;
-    }
-  
-  }
 
 // @lc code=end
 

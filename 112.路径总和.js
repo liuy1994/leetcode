@@ -47,12 +47,14 @@
  * @return {boolean}
  */
 var hasPathSum = function(root, sum) {
-
-};
-var getSum = function(root, res) {
-    while(root.left !== null || root.right !== null) {
-        
+    if (!root) return false
+    sum -= root.val
+    if (root.left || root.right) {
+        return hasPathSum(root.left, sum) || hasPathSum(root.right, sum)
+    } else {
+        return sum === 0
     }
-}
+};
+
 // @lc code=end
 

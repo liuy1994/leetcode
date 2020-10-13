@@ -48,21 +48,24 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-let res = {}
-var levelOrderBottom = function (root, deep = 1) {
-  
-  res[deep] = res[deep] || []
-  if (root) {
-    res[deep].push(root.val)
-    if (root.left || root.right) {
-      deep += 1
-      levelOrderBottom(root.left, deep)
-      levelOrderBottom(root.right, deep)
+
+var levelOrderBottom = function (root) {
+  let arr = []
+  let res = []
+  if (!root) return []
+  arr.push(root)
+  while(arr.length) {
+    let sub = []
+    const len = arr.length
+    for (let i=0;i<len;i++) {
+      sub.push(arr[i].val)
+      if (arr[i].left) arr.push(arr[i].left)
+      if (arr[i].right) arr.push(arr[i].right)
     }
-  } else {
-    return []
+    arr.splice(0, len)
+    res.unshift(sub)
   }
-  return Object.values(res).reverse()
+  return res
 };
 
 // @lc code=end
