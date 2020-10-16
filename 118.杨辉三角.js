@@ -40,24 +40,21 @@
  */
 var generate = function(rows) {
   let res = []
-
-  if (rows === 1) {
-    res = [[1]]
-  } else {
-    res = [
-      [1],
-      [1,1]
-    ]
-    for(let i = 3; i<= rows;i++){
-      res[i] = [
-        1, 
-        ...Array.from({length:n-2}, (_,k) => k),
-         1]
+  if (rows >= 1) {
+    res.push([1])
+  }
+  for (let i=1;i<rows;i++) {
+    let arr = []
+    for (let j=0;j<=i;j++) {
+      // console.log(res[i-1][j-1], res[i-1][j])
+      arr.push((res[i-1][j-1] || 0) + (res[i-1][j] || 0))
     }
+    res.push(arr)
   }
   
   return res;
 
 };
 // @lc code=end
-
+// generate(2)
+// console.log(generate(4))
