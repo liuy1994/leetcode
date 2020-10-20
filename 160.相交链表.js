@@ -88,39 +88,44 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-  
-    // let A = headA, B = headB
-    // let alen = 0, blen = 0
-    // while(A) {
-    //   alen++
-    //   A = A.next
-    // }
-    // while(B) {
-    //   blen++
-    //   B = B.next
-    // }
-    // if (!B || !A) {
-    //   return null
-    // }
-    // let skip = alen - blen
-    // if (skip > 0) {
-    //   while(skip) {
-    //     headA = headA.next
-    //     skip--
-    //   }
-    // } else {
-    //   skip = -skip
-    //   while(skip) {
-    //     headB = headB.next
-    //     skip--
-    //   }
-    // }
-    // if (headA.next === headB.next) {
-    //   return headA.next
-    // } else {
-    //   return null
-    // }
+  let a=0,b=0
+  if (headA && !headB) {
+      return null
+  }
+  if (!headA && headB) {
+      return null
+  }
+  while(headA) {
+      a++
+      headA = headA.next
+  }
+  headA = headB
+  while(headB) {
+    b++
+    headB = headB.next
+  }
+  headB = headA
 
+  if (a>b) {
+      while(a-b>0) {
+          headB = headB.next
+          b++
+      }
+  }
+  
+  if (a<b) {
+    while(b-a>0) {
+        headA = headA.next
+        a++
+    }
+}
+  let res = null
+  while(headA && !res) {
+      if (headA.next === headB.next) {
+          res = headA.next
+      }
+  }
+  return res
 };
 // @lc code=end
 

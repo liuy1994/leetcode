@@ -10,22 +10,24 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let sum = 0
-    if (prices.length < 2) return sum
-    for(let i=0;i<prices.length-1;i++){
-        if (prices[i] >= prices[i+1]) {
-
-        } else {
-            let arr = prices.slice(i+1)
-            for(let j=0;j<arr.length - 1;j++) {
-                if (arr[j+1] <= arr[j]) {
-                    sum += arr[j] - prices[i]
-                    i = j
-                }
-            }
+    let arr = [...prices]
+    // console.log(prices.sort((a,b) => a-b))
+    if (prices.join('-') === arr.sort((a,b) => a-b).join('-')) {
+        return prices[prices.length-1]  - prices[0]
+    }
+    if (prices.join('-') === arr.sort((a,b) => b-a).join('-')) {
+        return 0
+    }
+    let res = 0
+    let base = 0
+    for(let i=0;i<prices.length-1;i++) {
+        if (prices[i+1] > prices[i]) {
+            res += prices[i+1] - prices[i]
+            base = i+1
         }
     }
-    return sum
+    return res
 };
 // @lc code=end
 
+console.log(maxProfit([7,1,5,3,6,4]))
