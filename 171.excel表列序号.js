@@ -55,7 +55,12 @@
  * @return {number}
  */
 var titleToNumber = function(s) {
-
+    s = s.split('').map(v => v.charCodeAt()-64).reverse()
+    let res = 0
+    for(let i=0;i<s.length;i++) {
+        res += s[i] * (26**i)
+    }
+    return res
 };
 // @lc code=end
 

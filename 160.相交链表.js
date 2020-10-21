@@ -87,45 +87,14 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function(headA, headB) {
-  let a=0,b=0
-  if (headA && !headB) {
-      return null
-  }
-  if (!headA && headB) {
-      return null
-  }
-  while(headA) {
-      a++
-      headA = headA.next
-  }
-  headA = headB
-  while(headB) {
-    b++
-    headB = headB.next
-  }
-  headB = headA
-
-  if (a>b) {
-      while(a-b>0) {
-          headB = headB.next
-          b++
-      }
-  }
-  
-  if (a<b) {
-    while(b-a>0) {
-        headA = headA.next
-        a++
+var getIntersectionNode = function (headA, headB) {
+    if (headA === null || headB === null) return null
+    let pA = headA, pB = headB
+    while(pA !== pB) {
+        pA = pA === null ? headB : pA.next
+        pB = pB === null ? headA : pB.next
     }
-}
-  let res = null
-  while(headA && !res) {
-      if (headA.next === headB.next) {
-          res = headA.next
-      }
-  }
-  return res
+    return pA
 };
 // @lc code=end
 
