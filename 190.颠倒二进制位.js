@@ -10,11 +10,10 @@
  * @return {number} - a positive integer
  */
 var reverseBits = function(n) {
-    console.log(n)
-    let res = n.toString(2).split('').reverse().join('')
-    console.log(n.toString(2), res)
-    return res
+    n = n.toString(2)
+    n = n.padStart(32, '0').split('').reverse().join('')
+    return parseInt(n, 2)
 };
 // @lc code=end
 
-reverseBits(00000010100101000001111010011100)
+// console.log(reverseBits(43261596))

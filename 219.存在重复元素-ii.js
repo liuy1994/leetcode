@@ -11,7 +11,12 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
-
+    let arr = []
+    for(let i=0;i<nums.length;i++) {
+        if (arr.includes(nums[i])) return true
+        arr.push(nums[i])
+        if (arr.length > k) arr.shift()
+    }
+    return false
 };
 // @lc code=end
-
