@@ -38,17 +38,18 @@
  */
 var reverseVowels = function(s) {
   s = s.split('')
-  for(let i=0;i<s.length;i++) {
-    if (['a','e','i','o','u'].includes(s[i])) {
-      for(let j=s.length-1;j > i; j--) {
-        if ([s[i], s[j]].every(v => ['a','e','i','o','u'].includes(v))) {
-          [s[i], s[j]] = [s[j], s[i]]
-          continue
-        }
-        
-      }
+  let base = ['a', 'e', 'i', 'o', 'u']
+  let arr = []
+  for(let i=0;i< s.length;i++) {
+    if (base.includes(s[i].toLowerCase())) {
+      arr.push(s[i])
+      s[i] = ''
     }
-    
+  }
+  for (let i=0;i<s.length;i++) {
+    if (s[i] === '') {
+      s[i] = arr.pop()
+    }
   }
   return s.join('')
 };

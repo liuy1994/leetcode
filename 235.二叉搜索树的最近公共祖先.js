@@ -26,11 +26,12 @@ const check = (root, key) => {
 var lowestCommonAncestor = function(root, p, q) {
     let qwe = root
     while(qwe) {
-        let base = check(root, p.val)
-        if (check(base, q.val)) {
-            qwe = base
+        if (qwe.val > p.val && qwe.val > q.val) {
+            qwe = qwe.left
+        } else if (qwe.val < p.val && qwe.val < q.val) {
+            qwe = qwe.right
         } else {
-            return root
+            return qwe
         }
     }
     
