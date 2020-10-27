@@ -13,16 +13,15 @@
 var reverseStr = function(s, k) {
     let str = ''
     for (let i=0;i<s.length;i=i+2*k) {
-        if (s.length-i <k) {
-            str += s.slice(i, k).split('').reverse().join('')
+        if (s.length-i < k) {
+            str += s.slice(i, i+k).split('').reverse().join('')
         } else {
-            str += s.slice(i, k).split('').reverse().join('')
+            str += s.slice(i, i+k).split('').reverse().join('')
             str += s.slice(i+k, i+2*k)
         }
     }
-    console.log(str)
     return str
 };
 // @lc code=end
 
-reverseStr('abcdefg', 2)
+console.log(reverseStr('abcdefg', 1))
