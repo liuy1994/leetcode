@@ -15,7 +15,9 @@ var validPalindrome = function(s) {
     const len = s.length
     let flag = false
     for(let i=0;i<Math.ceil(len/2) && !flag;i++) {
-        if (s[i] !== s[len-1-i])
+        if (s[i] !== s[len-1-i]) {
+            s.splice()
+        }
     }
 };
 // @lc code=end
