@@ -10,31 +10,24 @@
  * @return {boolean}
  */
 var checkPossibility = function(nums) {
-    let arr = []
-    arr = nums.slice(1)
-    if (arr.sort((a,b) => a-b).toString() === nums.slice(1).toString()) {
-        return true
-    }
-    arr = nums.slice(0, -1)
-    if (arr.sort((a,b) => a-b).toString() === nums.slice(0, -1).toString()) {
-        return true
-    }
-    arr = [...nums]
-    let count = 0
-    for (let i=0;i<arr.length-1;i++) {
-        console.log(arr[i+1], arr[i], arr[i+1] < arr[i])
-        if (arr[i+1] < arr[i]) {
-            count++
-            if (i>0) {
-                arr[i] = arr[i-1]
-            } else {
-                arr[i+1] = arr[i]
+    let base = 0
+    let len = nums.length
+    if (len <=2 ) return true
+    else if (nums[0] > nums[1]) base = 0
+    else if (nums[len-1] < nums[len-2]) base = len-1
+    else {
+        for(let i=1;i<len-1;i++) {
+            if ((nums[i] < nums[i-1] && nums[i] < nums[i+1])) {
+                base = i
             }
         }
     }
-    console.log(arr)
-    return count <= 1
+    console.log(base)
+    nums.splice(base, 1)
+    let arr = [...nums]
+    arr.sort((a,b) => a-b)
+    return nums.join(',') === arr.join(',')
 
 };
 // @lc code=end
-console.log(checkPossibility([3,4,2,3]))
+console.log(checkPossibility([5,7,1,8]))
