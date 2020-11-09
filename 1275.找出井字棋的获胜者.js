@@ -96,7 +96,32 @@
  * @return {string}
  */
 var tictactoe = function(moves) {
-
+    let [r, c] = moves[moves.length - 1]
+    let row = 0,col=0,a=0,b=0,he=r+c,cha=r-c
+    for (let i=0;i<moves.length;i++) {
+        if (i%2 === (moves.length-1)%2) {
+            let v = moves[i]
+            if (v[0] === r) {
+                row++
+            }
+            if (v[1] === c) {
+                col++
+            }
+            if (v[0] + v[1] === he) {
+                a++
+            }
+            if (v[0]-v[1] === cha) {
+                b++
+            }
+        }
+    }
+    if (row===3 || col ===3 || a===3 || b === 3) {
+        return moves.length%2  ? 'A' : 'B'
+    } else if (moves.length === 9) {
+        return 'Draw'
+    } else {
+        return 'Pending'
+    }
 };
 // @lc code=end
 

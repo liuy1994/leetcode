@@ -75,23 +75,17 @@
  * @return {number[]}
  */
 var getNoZeroIntegers = function(n) {
-    let origin = n
-    let a = 1
-    n -=1
-    
-    if (n%10 === 0) {
-      a += 10
-      n -= 10
+    for (let i=1;i<n;i++) {
+      if (i.toString().indexOf('0') === -1) {
+        if ((n-i).toString().indexOf('0') === -1) {
+          return [i, n-i]
+        } else {
+          continue
+        }
+      } else {
+        continue
+      }
     }
-    if (n%100 === 0) {
-      a += 100
-      n -= 100
-    }
-    if (n%1000 === 0) {
-      a += 1000
-      n -= 1000
-    }
-    return [a, origin - a]
 };
 // @lc code=end
-
+console.log(getNoZeroIntegers(11))

@@ -61,7 +61,16 @@
  * @return {number}
  */
 var minTimeToVisitAllPoints = function(points) {
+    let count = 0
+    for (let i=0;i<points.length-1;i++) {
+        count += Math.max(
+            Math.abs(points[i+1][0]-points[i][0]),
+            Math.abs(points[i+1][1]-points[i][1])
+        )
+    }
 
+    return count
 };
 // @lc code=end
 
+console.log(minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]]))
