@@ -12,7 +12,7 @@
  * @return {boolean}
  */
 var containsPattern = function(arr, m, k) {
-
+    return new RegExp(`((\\d,){${m}})\\1{${k - 1}}`).test(arr.join(',')+',');
 };
 // @lc code=end
 
