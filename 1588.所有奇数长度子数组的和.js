@@ -10,7 +10,10 @@
  * @return {number}
  */
 var sumOddLengthSubarrays = function(arr) {
+    let res = 0
+    for (let len=1;len<=arr.length;len += 2) {
 
+    }
 };
 // @lc code=end
 
