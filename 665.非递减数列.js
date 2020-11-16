@@ -10,23 +10,9 @@
  * @return {boolean}
  */
 var checkPossibility = function(nums) {
-    let base = 0
-    let len = nums.length
-    if (len <=2 ) return true
-    else if (nums[0] > nums[1]) base = 0
-    else if (nums[len-1] < nums[len-2]) base = len-1
-    else {
-        for(let i=1;i<len-1;i++) {
-            if ((nums[i] < nums[i-1] && nums[i] < nums[i+1])) {
-                base = i
-            }
-        }
-    }
-    console.log(base)
-    nums.splice(base, 1)
-    let arr = [...nums]
-    arr.sort((a,b) => a-b)
-    return nums.join(',') === arr.join(',')
+    let arr = [...nums].sort((a,b) => a-b)
+
+    return arr
 
 };
 // @lc code=end
