@@ -59,7 +59,16 @@
  * @return {number}
  */
 var minCostToMoveChips = function(chips) {
-
+    let n = chips.length
+    if (n === 1) return 0
+    if (n === 2) return 1
+    if (n%2 === 1) {
+        let len = (n-1)/2
+        return len
+    } else {
+        return 1
+    }
 };
 // @lc code=end
 
+console.log(minCostToMoveChips([1,2,2,2,2]))
