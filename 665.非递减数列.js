@@ -10,9 +10,22 @@
  * @return {boolean}
  */
 var checkPossibility = function(nums) {
-    let arr = [...nums].sort((a,b) => a-b)
-
-    return arr
+    if (nums === null || nums.length <= 1) {
+		return true;
+	}
+	let cnt = 0;
+	for (let i = 1; i < nums.length && cnt < 2; i++) {
+		if (nums[i-1] <= nums[i]) {
+			continue;
+		}
+		cnt++;
+		if (i-2>=0 && nums[i-2] > nums[i]) {
+			nums[i] = nums[i-1];
+		}else {
+			nums[i-1] = nums[i];
+		}
+	}
+	return cnt <= 1;
 
 };
 // @lc code=end

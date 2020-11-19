@@ -54,25 +54,17 @@
  * @return {number}
  */
 var pivotIndex = function(nums) {
-  let i=0,j=nums.length-1;
   let res = -1
-  while(i<j && fn(nums.slice(0, i+1)) !== fn(nums.slice(j))) {
-    if (fn(nums.slice(0, i)) < fn(nums.slice(j))) {
-      i++
-    } else if (fn(nums.slice(0, i+1)) > fn(nums.slice(j))) {
-      j--
+  for (let i=0;i<nums.length && res === -1;i++) {
+    if (fn(nums.slice(0, i)) === fn(nums.slice(i+1))) {
+      res = i
     }
-    
   }
-  if (fn(nums.slice(0, i+1)) === fn(nums.slice(j)) && j-i === 2) {
-    console.log(i,j)
-    res = (i+j)/2
-  }
-  return res;
+  return res
 };
 var fn = (arr) => {
   return arr.reduce((a,b) => a+b, 0)
 }
-pivotIndex([1,7,3,6,5,6])
 // @lc code=end
 
+console.log(pivotIndex([-1,-1,-1,0,1,1]))
