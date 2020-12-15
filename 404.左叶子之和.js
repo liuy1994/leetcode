@@ -16,19 +16,20 @@
  * @param {TreeNode} root
  * @return {number}
  */
-const check = (root, flag) => {
-    if (root && !root.left && !root.right) {
-        return flag
-    } else {
-        return false
-    }
-}
-var sumOfLeftLeaves = function(root, flag = true) {
+
+var sumOfLeftLeaves = function(root) {
     let sum = 0
-    if (!root) return 0
-    if (check(root, flag)) return root.val
-    sum += (check(root.left, true) ? sumOfLeftLeaves(root.left) : 0) + 
-    check(root.right, false) ? sumOfLeftLeaves(root.right) : 0
+    var fn = (node, isLeft = false) => {
+        if (node) {
+            if (!node.left && !node.right && isLeft) {
+                sum += node.val
+            } else {
+                fn(node.left, true)
+                fn(node.right)
+            }
+        }
+    }
+    fn(root)
     return sum
 };
 // @lc code=end

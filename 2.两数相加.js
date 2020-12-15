@@ -18,8 +18,17 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-
+    let res = {}
+    let rest = 0
+    let current = res
+    while(!l1 || !l2 || !rest) {
+        let sum = l1.val + l1.val
+        current['val'] = (sum+rest)%10
+        current = current.next
+        rest = Math.floor((sum+rest)/10)
+        l1 = l1 && l1.next
+        l2 = l2 && l2.next
+    }
+    return res
 };
-
 // @lc code=end
-

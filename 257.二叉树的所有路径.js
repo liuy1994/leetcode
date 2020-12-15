@@ -18,13 +18,25 @@
  */
 var binaryTreePaths = function(root) {
     let res = []
-    if (root) {
-        [root.left, root.right].map(v => {
-            return [v.val, ...binaryTreePaths(root)]
-        })
-        binaryTreePaths(root)
+    let fn = (node, arr = []) => {
+        arr = [...arr]
+        if (node) {
+            arr.push(node.val)
+            if (node.left || node.right) {
+                [node.left, node.right].forEach(v => {
+                    if (v) {
+                        fn(v, arr)
+                    }
+                })
+            } else {
+                res.push(arr.join('->'))
+            }
+        }
+        
     }
-    return res
+   fn(root, [])
+   return res
 };
+
 // @lc code=end
 
