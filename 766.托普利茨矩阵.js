@@ -10,12 +10,7 @@
  * @return {boolean}
  */
 var isToeplitzMatrix = function(matrix) {
-    let flag = false
-    for (let i=0;i<matrix.length;i++) {
-        
-    }
 
-    return flag
 };
 // @lc code=end
 
