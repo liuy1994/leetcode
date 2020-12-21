@@ -74,31 +74,24 @@
  * @param {string[]} A
  * @return {number}
  */
-var getStr = (str, i) => {
-  return [...str].filter((v, index) => index%2 === i).sort().join('')
-}
 
 var numSpecialEquivGroups = (A) => {
-  let res = [[A[0]]]
-  for(let i=1;i<A.length;i++) {
-    let a = getStr(A[i], 0)
-    let b = getStr(A[i], 1)
-    for(let j=0;j<res.length;j++) {
-      if(a === getStr(res[j][0],0) && b === getStr(res[j][0],1)) {
-        res[j].push(A[i])
-        console.log(11111)
-      } else {
-        res.push([A[i]])
-        console.log(22222)
-      }
+  var deal = str => {
+    let arr = str.split('')
+    let even = arr.filter((v, i) => i % 2 === 0).sort()
+    let odd = arr.filter((v, i) => i % 2 === 1).sort()
+    let res = []
+    while(even.length || odd.length) {
+      res.push(even.shift())
+      res.push(odd.shift())
     }
+    return res.join('')
   }
-  console.log(res)
-  return res.length;
-};
-console.log(numSpecialEquivGroups(['a', 'aa', 'b']))
+  let arr = A.map(v => deal(v))
 
-// console.log(getStr('cdeab', 1))
-// console.log(getStr('abcde', 0))
+  return new Set(arr).size
+};
 // @lc code=end
 
+
+// console.log(numSpecialEquivGroups(["abcd","cdab","cbad","xyzz","zzxy","zzyx"]))
