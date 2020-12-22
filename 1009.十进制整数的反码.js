@@ -63,13 +63,15 @@
  * @return {number}
  */
 var bitwiseComplement = function(N) {
-  
+  // let n = N.toString(2).split('').map(v => v === '1' ? '0' : '1').join('')
+  // return parseInt(n, 2)
+  let n = 1
+  while(n<N) {
+    n = (n << 1) + 1
+  }
+  return N ^ n
 };
 
-var fn = n => {
-  if (n/2 <= 1) {
-    return n/2
-  }
-}
+
 // @lc code=end
 
