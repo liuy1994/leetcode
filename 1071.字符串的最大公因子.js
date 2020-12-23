@@ -11,12 +11,14 @@
  * @return {string}
  */
 var gcdOfStrings = function(str1, str2) {
-    let res = ''
-    while(str1.indexOf(str2) !== -1) {
-
+    if (str1 + str2 !== str2 + str1) return ''
+    if (str1.length === str2.length) return str1
+    if (str1.length < str2.length) {
+        [str1, str2] = [str2, str1]
     }
-    return res
+    return gcdOfStrings(str2, str1.slice(str2.length))
+    
 };
 // @lc code=end
 
-console.log(gcdOfStrings())
+// console.log(gcdOfStrings('TAUXXTAUXXTAUXXTAUXXTAUXX', 'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX'))
