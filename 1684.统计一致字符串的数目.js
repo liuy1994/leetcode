@@ -14,5 +14,3 @@ var countConsistentStrings = function(allowed, words) {
     return words.filter(v => v.split('').every(t => allowed.indexOf(t) > -1)).length
 };
 // @lc code=end
-
-console.log(countConsistentStrings('ab', ["ad","bd","aaab","baa","badab"]))
