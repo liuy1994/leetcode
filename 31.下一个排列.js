@@ -10,43 +10,25 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var nextPermutation = function(nums) {
-    let flag = false
-    for (let i=nums.length-1;i>0 && !flag;i--) {
-        // for (let j=i-1;j>=0 && !flag;j--) {
-        //     if (nums[j] < nums[i]) {
-        //         flag = true
-        //         let temp = nums[i]
-        //         nums[i] = nums[j]
-        //         nums[j] = temp
-        //         console.log(nums)
-        //         fn(nums, j)
-        //     }
-        // }
-        if (nums[i-1] < nums[i]) {
-                flag = true
-                let temp = nums[i]
-                nums[i] = nums[i-1]
-                nums[i-1] = temp
-                // console.log(nums)
-                fn(nums, i-1)
-        }
-    }
-    if (!flag) {
+    if (nums.toString() === [...nums].sort((a,b) => b-a).toString()) {
         nums.sort((a,b) => a-b)
-    }
-    // console.log(nums)
-};
-const fn = (nums, idx) => { 
-    for(let i=idx+1;i<nums.length-1;i++) {
-        for(let j=i+1;j<=nums.length-1;j++) {
-            if (nums[i] > nums[j]) {
-                let temp = nums[i]
-                nums[i] = nums[j]
-                nums[j] = temp
+    } else {
+        for (let i=nums.length-1;i>0;i--) {
+            if (nums[i] > nums[i-1]) {
+                let min = nums.slice(i).filter(v => v>nums[i-1]).sort((a,b) => a-b)[0]
+                let index = nums.lastIndexOf(min);
+                [nums[i-1],nums[index]] = [nums[index], nums[i-1]]
+                let arr = nums.splice(i, nums.length)
+                nums.splice(i,0,...arr.sort((a,b) => a-b))
+                break
             }
         }
     }
-}
+    
+    return nums
+};
 // @lc code=end
 
-// nextPermutation([4,2,0,2,3,2,0])
+// console.log(nextPermutation([4,2,0,2,3,2,0]))
+// console.log(nextPermutation([1,3,2]))
+// console.log(nextPermutation([5,4,7,5,3,2]))
