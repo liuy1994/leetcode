@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=39 lang=javascript
+ * @lc app=leetcode.cn id=40 lang=javascript
  *
- * [39] 组合总和
+ * [40] 组合总和 II
  */
 
 // @lc code=start
@@ -11,15 +11,15 @@
  * @return {number[][]}
  */
 let getSum = arr => arr.reduce((a,b) => a+b)
-var combinationSum = function(candidates, target) {
+var combinationSum2 = function(candidates, target) {
     candidates.sort((a,b) => a-b)
-    let res = []
+    let res = new Set()
     let deal = (arr, base) => {
         if (getSum(arr) > target) {
             return false
         }
         if (getSum(arr) === target) {
-            res.push([...arr])
+            res.add(arr.join(','))
             return false
         }
 
@@ -27,20 +27,19 @@ var combinationSum = function(candidates, target) {
             if (getSum(arr) + candidates[i] > target) {
                 return false
             } else if (getSum(arr) + candidates[i] === target) {
-                res.push([...arr, candidates[i]])
+                res.add([...arr, candidates[i]].join(','))
                 return false
             } else {
-
-                deal([...arr, candidates[i]],i)
+                deal([...arr, candidates[i]],i+1)
 
             }
         }
     }
     for (let i=0;i<candidates.length;i++) {
-        deal([candidates[i]], i)
+        deal([candidates[i]], i+1)
     }
-    return res
+    return [...res].map(v => v.split(','))
 };
 // @lc code=end
 
-// console.log(combinationSum([2,3,6,7],7))
+// console.log(combinationSum2([10,1,2,7,6,1,5], 8))
