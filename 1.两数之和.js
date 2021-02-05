@@ -34,7 +34,12 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-
+    for (let i=0;i<nums.length-1;i++) {
+        let index = nums.lastIndexOf(target-nums[i]) 
+        if (index !== -1 && index !== i) {
+                return [i, index]
+        }
+    }
 };
 // @lc code=end
 
