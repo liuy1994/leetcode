@@ -17,12 +17,8 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
-    if (!head.next) return head
-    while(head.val === head.next.val) {
-        head = head.next
-    }
-    
-    return head
+
+    return p
 };
 // @lc code=end
 

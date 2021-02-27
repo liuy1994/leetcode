@@ -26,19 +26,17 @@ var rotateRight = function(head, k) {
         len++
     }
     head.next = p
-    while(len-k>0) {
-        p = p.next
-        k++
+    while(len <= k) {
+        len *= 2
     }
-    let q = p
-    while(len) {
+    while(len-k-1) {
         p = p.next
-        q.next = p.next
         len--
     }
-    console.log(q.val, q.next.val, q.next.next.val)
+    const q = p.next
     p.next = null
     return q
+
 };
 // @lc code=end
 
