@@ -18,7 +18,27 @@
  * @return {ListNode}
  */
 var rotateRight = function(head, k) {
-
+    let p = head
+    if (!head) return head
+    let len = 1
+    while(head.next) {
+        head = head.next
+        len++
+    }
+    head.next = p
+    while(len-k>0) {
+        p = p.next
+        k++
+    }
+    let q = p
+    while(len) {
+        p = p.next
+        q.next = p.next
+        len--
+    }
+    console.log(q.val, q.next.val, q.next.next.val)
+    p.next = null
+    return q
 };
 // @lc code=end
 
