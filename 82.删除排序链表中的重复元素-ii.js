@@ -17,8 +17,30 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
-    console.log(2333)
-    return p
+    const str = JSON.stringify(head)
+    let p = head
+    if (!head) {
+        return head
+    }
+    let count = {}
+    while(head) {
+        count[head.val] = count[head.val] || 0
+        count[head.val]++
+        head = head.next
+    }
+    while(p && count[p.val] > 1) {
+        p = p.next
+    }
+    if (!p) return p
+    let q = p
+    while(p.next) {
+        if (count[p.next.val] > 1) {
+            p.next = p.next.next
+        } else {
+            p = p.next
+        }
+    }
+    return q
 };
 // @lc code=end
 
