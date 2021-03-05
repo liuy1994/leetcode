@@ -11,13 +11,17 @@
  */
 var findRepeatedDnaSequences = function(s) {
     let res = {}
+    let arr = []
     while(s.length >= 10) {
         let str = s.slice(0, 10)
-        res[str] = res[str] ? res[str]+1 : 1
+        if (res[str] === 1) {
+            arr.push(str)
+        }
+        res[str] = res[str] ? res[str] + 1 : 1
         s = s.slice(1)
     }
     // console.log(res)
-    return Object.entries(res).filter(v => v[1] > 1).map(v => v[0])
+    return arr
 };
 // @lc code=end
 
