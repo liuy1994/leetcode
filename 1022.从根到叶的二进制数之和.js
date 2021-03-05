@@ -19,7 +19,21 @@
  */
 var sumRootToLeaf = function(root) {
     if (!root) return 0
-    
+    let res = []
+    const fn = (head, str = '') => {
+        if (!head) {
+            return false
+        }
+        str += head.val
+        if (head.left || head.right) {
+            fn(head.left, str)
+            fn(head.right, str)
+        } else {
+            res.push(str)
+        }
+    }
+    fn(root)
+    return res.map(v => parseInt(v, 2)).reduce((a,b) => a+b,0)
 };
 // @lc code=end
 
