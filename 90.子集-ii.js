@@ -10,13 +10,23 @@
  * @return {number[][]}
  */
 var subsetsWithDup = function(nums) {
-    let res = ['']
-    let len = nums.length
+    nums.sort((a,b) => a-b)
+    const res = []
     let deal = (arr) => {
-        
+        let str = arr.join(',')
+        if (!res.includes(str)) {
+            res.push(str)
+        }
+        if (arr.length > 1) {
+            for (let i=0;i<arr.length;i++) {
+                let arr2 = [...arr]
+                arr2.splice(i, 1)
+                deal(arr2)
+            }
+        }
 
     }
-    return res
+    deal(nums)
+    return [[], ...res.map(v => v.split(','))]
 };
 // @lc code=end
-// console.log(subsetsWithDup([0]))
