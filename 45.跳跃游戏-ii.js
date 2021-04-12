@@ -11,14 +11,28 @@
  */
 var jump = function(nums) {
     let len = nums.length - 1
-    let res = len
-
-    for (let i=0;i<=len;) {
-        for (let j=1;j<=nums[i];j++) {
-
+    let dp = []
+    for (let i=0;i<=len;i++) {
+        if (i === 0) {
+            dp[0] = 0
+        } else if (i === 1) {
+            dp[i] = 1
+        } else {
+            let current = nums[len-i]
+            let min = Infinity
+            if (nums[len-i] >= i) {
+                dp[i] = 1
+            } else {
+                for (let j=1;j<=current;j++) {
+                    min = Math.min(min, 1 + dp[i-j])
+                }
+                dp[i] = min
+            }
+            
         }
-        i += j
     }
+
+    return dp.pop()
 };
 // @lc code=end
-
+// console.log(jump([5,6,4,4,6,9,4,4,7,4,4,8,2,6,8,1,5,9,6,5,2,7,9,7,9,6,9,4,1,6,8,8,4,4,2,0,3,8,5]))

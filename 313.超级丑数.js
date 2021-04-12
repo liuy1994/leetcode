@@ -11,15 +11,28 @@
  * @return {number}
  */
 var nthSuperUglyNumber = function(n, primes) {
-    let count = 1
-    let nums = [1]
+    let res = [1]
+    let obj = {}
+    let idx = []
+    for (let i=0;i<primes.length;i++) {
+        idx.push(0)
+    }
 
-    var fn = num => {
-        
+    const getMin = (arr) => {
+        return [...arr].sort((a,b) => a-b)[0]
     }
-    while(count <= n) {
-        for ()
+
+    while(res.length < n){
+        const arr = primes.map((v,i) => res[idx[i]] * v)
+        const min = getMin(arr)
+        const minIndex = arr.indexOf(min)
+        idx[minIndex]++
+        if (!obj[arr[minIndex]]) {
+            res.push(arr[minIndex])
+            obj[arr[minIndex]] = 1
+        }
     }
+    return res[res.length-1]
 };
 // @lc code=end
-
+// console.log(nthSuperUglyNumber(12, [2,7,13,19]))

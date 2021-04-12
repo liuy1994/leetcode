@@ -12,7 +12,6 @@
 var nthUglyNumber = function(n) {
     let res = [1]
     let idx = [0,0,0]
-    let index = 0
 
     const getMin = (arr) => {
         return arr.indexOf(Math.min(Math.min(arr[0], arr[1]), arr[2]))
@@ -25,23 +24,9 @@ var nthUglyNumber = function(n) {
         if (!res.includes(arr[minIdx])) {
             res.push(arr[minIdx])
         }
-        // res = [...new Set([...res, [2,3,5].map(v => v*res[idx])])].sort((a,b) => a-b)
     }
     return res[res.length-1]
-
-    // let res = [1]
-    
-    // while(res.length < n) {
-    //     let idx = [0,0,0];
-    //     [2,3,5].map((v, i) => {
-    //         let num = v * res[idx[i]++]
-    //         if (res.indexOf(num === -1)) {
-    //             res = [...new Set(...[...res, num])].sort((a,b) => a-b)
-    //         }
-    //     })
-    // }
-    // return res
 };
 // @lc code=end
 
-console.log(nthUglyNumber(10))
+// console.log(nthUglyNumber(1690))
