@@ -19,16 +19,29 @@ var nthUglyNumber = function(n) {
     }
 
     while(res.length < n){
-        // const arr = [res[idx[0]]*2,res[idx[1]]*3,res[idx[2]]*5]
-        // const minIdx = getMin(arr)
-        // idx[minIdx]++
-        // if (!res.includes(arr[minIdx])) {
-        //     res.push(arr[minIdx])
-        // }
-        res = [...new Set([...res, [2,3,5].map(v => v*res[idx])])].sort((a,b) => a-b)
+        const arr = [res[idx[0]]*2,res[idx[1]]*3,res[idx[2]]*5]
+        const minIdx = getMin(arr)
+        idx[minIdx]++
+        if (!res.includes(arr[minIdx])) {
+            res.push(arr[minIdx])
+        }
+        // res = [...new Set([...res, [2,3,5].map(v => v*res[idx])])].sort((a,b) => a-b)
     }
     return res[res.length-1]
+
+    // let res = [1]
+    
+    // while(res.length < n) {
+    //     let idx = [0,0,0];
+    //     [2,3,5].map((v, i) => {
+    //         let num = v * res[idx[i]++]
+    //         if (res.indexOf(num === -1)) {
+    //             res = [...new Set(...[...res, num])].sort((a,b) => a-b)
+    //         }
+    //     })
+    // }
+    // return res
 };
 // @lc code=end
 
-// console.log(nthUglyNumber(1))
+console.log(nthUglyNumber(10))
