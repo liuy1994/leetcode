@@ -9,27 +9,32 @@
  * @param {string} s
  * @return {string[][]}
  */
-var partition = function(s) {
-    let len = s.length
+var partition = function(str) {
     let res = []
-    for (let i=1;i<=len;i++) {
-        for (let j=0;j<=len - i;j++) {
-            let current = s.slice(j, j+i)
+    const fn = (s, pre = []) => {
+        for (let i=1;i<=s.length;i++) {
             let flag = true
             let base = 0
             while(base <= i/2) {
-                if (current[base] !== current[current.length-base-1]) {
+                if (s[base] !== s[i-base-1]) {
                     flag = false
+                    break
                 }
                 base++
             }
             if (flag) {
-                res.push(current)
+                if (i === s.length) {
+                    res.push([...pre, s.slice(0)])
+                } else {
+                    fn(s.slice(i), [...pre, s.slice(0,i)])
+                }
             }
         }
     }
+    fn(str)
     return res
+    // return res
 };
 // @lc code=end
 
-console.log(partition('aab'))
+// console.log(partition('a'))
