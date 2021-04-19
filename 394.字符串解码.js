@@ -10,7 +10,10 @@
  * @return {string}
  */
 var decodeString = function(s) {
-
+    let a = [],b = []
+    for(let i of s) {
+        
+    }
 };
 // @lc code=end
 
