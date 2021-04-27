@@ -17,19 +17,24 @@ var findNthDigit = function(n) {
     //     res = res + (base++).toString()
     // }
     // return res[n-1]
-    let count = 0
-    let current = 0
-    while(count < n) {
-        let temp = count + (current+1).toString().length
-        if (temp < n) {
-            count = temp
-            current++
-        } else {
-            break
-        }
+    // let res = ''
+    // let base = 1
+    // while(res.length + base.toString().length < n) {
+    //     res += base.toString()
+    //     base++
+    // }
+    // return base.toString()[n-res.length-1]
+    if (n < 10) return n
+    let length = 0, count = 9, i = 1
+    while(length + count * i < n) {
+        length += count * i
+        count *= 10
+        i++
     }
-    let last = (current+1).toString()
-    return parseInt(last[n-count-1])
+    let num = Math.pow(10, i-1) + Math.floor((n - length - 1) / i)
+    let index = (n-length-1)%i
+    return num.toString()[index]
 };
 // @lc code=end
-// console.log(findNthDigit(13))
+// console.log(findNthDigit(1000000000))
+// console.log(findNthDigit(11))
