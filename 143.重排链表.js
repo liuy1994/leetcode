@@ -25,11 +25,24 @@ var reorderList = function(head) {
     let left = head, right = slow.next
     slow.next = null
 
-    console.log(left, right)
     let pre = head, sec = right
+    let temp = []
+    let pos = right
+    while(pos) {
+        temp.unshift(pos)
+        pos = pos.next
+    }
     while(pre) {
-        pre.next = sec
-        sec = sec.next       
+        let next = pre.next
+        pre.next = temp.shift() || null
+        if (pre.next) {
+            pre.next.next = next
+            pre = pre.next.next
+        } else {
+            pre = pre.next
+        }
+        
+        
     }
 };
 // @lc code=end
