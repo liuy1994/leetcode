@@ -14,8 +14,8 @@ var lexicalOrder = function(n) {
     for (let i=1;i<=n;i++) {
         obj[i] = 1
     }
-    return obj
+    return Object.keys(obj).sort()
 };
 // @lc code=end
 
-console.log(lexicalOrder(13))
+// console.log(lexicalOrder(13))
