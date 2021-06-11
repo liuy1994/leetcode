@@ -30,10 +30,14 @@ Solution.prototype.shuffle = function() {
     let arr = [this.arr[0]]
     let len = this.arr.length
     for (let i=1;i<len;i++) {
-        let random = Math.floor(Math.random() * 10) % arr.length
-        let temp = arr[random]
-        arr[random] = this.arr[i]
-        arr.push(temp)
+        if (Math.random() > 0.5) {
+            let random = Math.floor(Math.random() * 10) % arr.length
+            let temp = arr[random]
+            arr[random] = this.arr[i]
+            arr.push(temp)
+        } else {
+            arr.push(this.arr[i])
+        }
     }
     this.arr = arr
     return this.arr
