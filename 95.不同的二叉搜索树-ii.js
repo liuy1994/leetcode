@@ -18,7 +18,37 @@
  * @return {TreeNode[]}
  */
 var generateTrees = function(n) {
+    let arr = []
+    for (let i = 1;i <= n;i++) {
+        arr.push(i)
+    }
+
+    let res = []
+
+    const fn = (list) => {
+       let temp = []
+       if (list.length === 0) return []
+       for (let i=0;i<list.length;i++) {
+           let val = list[i]
+           let left = fn(list.slice(0, i))
+           let right = fn(list.slice(i+1))
+        console.log(left, right)
+           if (!left.length && !right.length) {
+               temp.push({
+                   val,
+                   left: null,
+                   right: null
+               })
+           } else {
+               
+           }
+       }
+       return temp
+    }
+    return JSON.stringify(fn(arr))
+    
 
 };
 // @lc code=end
 
+console.log(generateTrees(3))
