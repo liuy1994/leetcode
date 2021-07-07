@@ -32,23 +32,47 @@ var generateTrees = function(n) {
            let val = list[i]
            let left = fn(list.slice(0, i))
            let right = fn(list.slice(i+1))
-        console.log(left, right)
+            console.log(left, right)
            if (!left.length && !right.length) {
                temp.push({
                    val,
                    left: null,
                    right: null
                })
+           } else if (left.length && !right.length) {
+                left.forEach(t => {
+                    temp.push({
+                        val,
+                        left: t,
+                        right: null
+                    })
+                })
+           } else if (!left.length && right.length) {
+            right.forEach(t => {
+                temp.push({
+                    val,
+                    left: null,
+                    right: t
+                })
+            })
            } else {
-               
+            left.forEach(l => {
+                right.forEach(r => {
+                    temp.push({
+                        val,
+                        left: l,
+                        right: r
+                    })
+                })
+            })
            }
        }
        return temp
     }
-    return JSON.stringify(fn(arr))
+    return fn(arr)
     
 
 };
 // @lc code=end
 
-console.log(generateTrees(3))
+// console.log(generateTrees(3))
