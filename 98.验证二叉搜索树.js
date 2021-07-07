@@ -18,44 +18,23 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    const fn = (node, temp, isLeft) => {
-        console.log(node, temp, isLeft)
+    let last = -Infinity
+
+    const fn = node => {
         if (node === null) {
             return true
         }
 
-        if (node.left) {
-            if (node.left.val >= node.val) {
-                return false
-            }
-            if (temp.length) {
-                if (isLeft && temp.some(v => v <= node.left.val)) {
-                    return false
-                }
-                if (!isLeft && temp.some(v => v >= node.left.val)) {
-                    return false
-                }
+        if (fn(node.left)) {
+            if (last < node.val) {
+                last = node.val
+                return fn(node.right)
             }
         }
-
-        // if (node.right) {
-        //     if (node.right.val <= node.val) {
-        //         return false
-        //     }
-        //     if (temp.length) {
-        //         if (isLeft && temp.some(v => v <= node.right.val)) {
-        //             return false
-        //         }
-        //         if (!isLeft && temp.some(v => v >= node.right.val)) { 
-        //             return false
-        //         }
-        //     }
-        // }
-
-        return fn(node.left, temp.concat(node.val), true) && fn(node.right, temp.concat(node.val), false)
+        return false
     }
+    return fn(root)
 
-    return fn(root, [])
 };
 // @lc code=end
 
