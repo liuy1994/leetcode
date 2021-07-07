@@ -38,19 +38,19 @@ var isValidBST = function(root) {
             }
         }
 
-        if (node.right) {
-            if (node.right.val <= node.val) {
-                return false
-            }
-            if (temp.length) {
-                if (isLeft && temp.some(v => v <= node.right.val)) {
-                    return false
-                }
-                if (!isLeft && temp.some(v => v >= node.right.val)) {
-                    return false
-                }
-            }
-        }
+        // if (node.right) {
+        //     if (node.right.val <= node.val) {
+        //         return false
+        //     }
+        //     if (temp.length) {
+        //         if (isLeft && temp.some(v => v <= node.right.val)) {
+        //             return false
+        //         }
+        //         if (!isLeft && temp.some(v => v >= node.right.val)) { 
+        //             return false
+        //         }
+        //     }
+        // }
 
         return fn(node.left, temp.concat(node.val), true) && fn(node.right, temp.concat(node.val), false)
     }
