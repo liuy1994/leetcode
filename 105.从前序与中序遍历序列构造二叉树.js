@@ -1,3 +1,4 @@
+// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -30,3 +31,4 @@
     return fn(root, left, right)
 
 };
+// @lc code=end
