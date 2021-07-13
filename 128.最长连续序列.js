@@ -10,26 +10,32 @@
  * @return {number}
  */
 var longestConsecutive = function(nums) {
-    let res = 0
-    if (nums.length <= 1) return 0
-    nums.sort((a,b) => a-b)
-    for (let i=0;i<nums.length;i++) {
-        for (let j=i+1;j<nums.length;j++) {
-            if (j === nums.length-1) {
-                res = Math.max(j+1-i, res)
-                break
-            } else {
-                if (nums[j]-nums[i] === j-i) {
-                    continue
-                } else {
-                    res = Math.max(j-i, res)
-                    break
-                }
-            }
+    // let res = 0
+    // if (nums.length <= 1) return 0
+    // nums.sort((a,b) => a-b)
+    // for (let i=0;i<nums.length;i++) {
+    //     for (let j=i+1;j<nums.length;j++) {
+    //         if (j === nums.length-1) {
+    //             res = Math.max(j+1-i, res)
+    //             break
+    //         } else {
+    //             if (nums[j]-nums[i] === j-i) {
+    //                 continue
+    //             } else {
+    //                 res = Math.max(j-i, res)
+    //                 break
+    //             }
+    //         }
+            
+    //     }
+    // }
+    // return res
+    let hash = {}
+    for (i of nums) {
+        if (hash[i] === undefined) {
             
         }
     }
-    return res
 };
 // @lc code=end
 
