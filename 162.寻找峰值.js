@@ -10,11 +10,12 @@
  * @return {number}
  */
 var findPeakElement = function(nums) {
-    if (nums.length === 1) {
+    const len = nums.length
+    if (len === 1) {
         return 0
     }
     let res = -1
-    for (let i=1;i<nums.length-1;i++) {
+    for (let i=1;i<len-1;i++) {
         if (nums[i] > nums[i-1] && nums[i] > nums[i+1]) {
             res = i
             break
@@ -24,8 +25,8 @@ var findPeakElement = function(nums) {
         if (nums[0] > nums[1]) {
             return 0
         }
-        if (nums[nums.length -1] > nums[nums.length-2]) {
-            return nums.length-1
+        if (nums[len -1] > nums[len-2]) {
+            return len-1
         }
     }
     return res
