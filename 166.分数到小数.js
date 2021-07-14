@@ -11,13 +11,8 @@
  * @return {string}
  */
 var fractionToDecimal = function(numerator, denominator) {
-    const a = numerator / denominator
-    a = a.toString().splice('.')
-    if (a[1].length > 10) {
+    let hash = {}
 
-    } else {
-        return a.join('.')
-    }
 };
 // @lc code=end
 
