@@ -11,9 +11,9 @@
  * @return {string}
  */
 var fractionToDecimal = function(numerator, denominator) {
-    let hash = {}
 
-};
+}
+
 // @lc code=end
 
-console.log(4/33, '012012012012012012'.length)
+console.log(fractionToDecimal(4,333))
