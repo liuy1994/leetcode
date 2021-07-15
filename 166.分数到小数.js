@@ -11,9 +11,29 @@
  * @return {string}
  */
 var fractionToDecimal = function(numerator, denominator) {
-
+    let res = '', hash = {}
+    res = Math.floor(numerator/denominator) + '.'
+    let rest = numerator% denominator
+    if (rest === 0) {
+        return parseInt(res).toString()
+    } else {
+        numerator = rest
+        while(!hash[numerator]) {
+            console.log(numerator, denominator)
+            let len = 1
+            while(numerator < denominator) {
+                numerator *= 10
+                len++
+            }
+            hash[numerator/10] = Math.floor(numerator/denominator)
+            res += Math.floor(numerator/denominator)
+            numerator = numerator%denominator
+        }
+        return res += `(${hash[numerator]})`
+    }
+    
 }
 
 // @lc code=end
 
-console.log(fractionToDecimal(4,333))
+console.log(fractionToDecimal(1,4))
