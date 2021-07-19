@@ -47,39 +47,39 @@
  * @param {string} s
  * @return {NestedInteger}
  */
-var deserialize = function(s) {
-    let res = new NestedInteger()
-    // if (s) {
-    //     if (s.indexOf(',') === -1) {
-    //         if (s.indexOf('[') === -1) {
-    //             res.setInteger(s)
-    //         } else {
-    //             res.setInteger(s.slice(1, -1))
-    //         }
-    //     } else {
-    //         let index = s.indexOf(',')
-    //         res.setInteger(s.slice(1, index))
-    //         s = s.slice(index+1, -1)
-    //         let temp = deserialize(s)
-    //         if (temp) {
-    //             res.add(temp)
-    //         }
-    //     }
-    // }
-    if (s[0] === '[') {
-        s = s.slice(1, -1)
+ var deserialize = function(s) {
+    let dummpy = new NestedInteger();
+    const layer = [];
+    layer.push(dummpy);
+    if(s[0] !== '[') { dummpy.setInteger(s) ; return dummpy};
+    let str = '';
+    for (var i = 1; i < s.length; i++) {
+      if (s[i] === ',') {
+          if(str !== ''){
+              let a = new NestedInteger();
+              a.setInteger(str);
+              layer[layer.length-1].add(a);
+          }
+        str = '';
+      } else if (s[i] === '[') {
+        const a = new NestedInteger();
+        layer[layer.length-1].add(a);
+        layer.push(a);
+  
+      } else if (s[i] === ']') {
+        if (str !== '') {
+          let a = new NestedInteger();
+          a.setInteger(str);
+          layer[layer.length-1].add(a);
+        }
+        layer.pop();
+        str = '';
+      } else {
+        str += s[i];
+      }
     }
-    let index = s.indexOf(',')
-    if (index === -1) {
-        res.setInteger(s)
-    } else {
-        res.setInteger(s.slice(0, index))
-        let temp = deserialize(s.slice(index+1,-1))
-        temp && res.add(temp)
-    }
-    return res
-
-};
+    return dummpy;
+  };
 
 // console.log(deserialize('324'))
 // @lc code=end
