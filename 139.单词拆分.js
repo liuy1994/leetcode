@@ -11,20 +11,7 @@
  * @return {boolean}
  */
  function wordBreak(s, wordDict) {
-     const aSet = new Set(s)
-     const bSet = new Set(wordDict.join(''))
-     if ([...aSet].some(v => ![...bSet].includes(v))) {
-         return false
-     }
-    if (s.length === 0) return true
-    return wordDict.some(v => {
-        const len = v.length
-        if (s.slice(0, len) === v) {
-            return wordBreak(s.slice(len), wordDict)
-        } else {
-            return false
-        }
-    })
+    for (let )
 }
 ;
 // @lc code=end
