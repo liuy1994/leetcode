@@ -11,24 +11,21 @@
  * @return {boolean}
  */
  function wordBreak(s, wordDict) {
-     if (s === "") return true
-     let temp = s
-    for (let str of wordDict) {
-        let len = str.length
-        if (s.slice(0, len) === str) {
-            s = s.slice(len)
-            break 
-        }
-    }
-    if (temp === s) {
-        return false
-    } else {
-        return wordBreak(s, wordDict)
-    }
-}
-;
+     let dp = [true]
+     for (let i=1;i<=s.length;i++) {
+         for (let j=0;j<i;j++) {
+             let current = s.slice(j, j+i)
+             if (dp[j] && wordDict.find(v => v === current)) {
+                 dp[i] = true
+                 break
+             }
+         }
+     }
+     console.log(dp)
+     return dp[s.length-1]
+};
 // @lc code=end
-console.log(wordBreak('cars', ["car","ca","rs"]));
+console.log(wordBreak('applepenapple', ["apple","pen"]));
 // console.log(wordBreak('applepenapple', ["apple", "pen"]));
 // console.log(wordBreak('catsandog', ["cats", "dog", "sand", "and", "cat"]));
 // console.log(wordBreak('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab', ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa"]));
