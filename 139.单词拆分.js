@@ -11,11 +11,24 @@
  * @return {boolean}
  */
  function wordBreak(s, wordDict) {
-    for (let )
+     if (s === "") return true
+     let temp = s
+    for (let str of wordDict) {
+        let len = str.length
+        if (s.slice(0, len) === str) {
+            s = s.slice(len)
+            break 
+        }
+    }
+    if (temp === s) {
+        return false
+    } else {
+        return wordBreak(s, wordDict)
+    }
 }
 ;
 // @lc code=end
-// console.log(wordBreak('cars', ["car","ca","rs"]));
+console.log(wordBreak('cars', ["car","ca","rs"]));
 // console.log(wordBreak('applepenapple', ["apple", "pen"]));
 // console.log(wordBreak('catsandog', ["cats", "dog", "sand", "and", "cat"]));
 // console.log(wordBreak('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab', ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa"]));
