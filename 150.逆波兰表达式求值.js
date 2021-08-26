@@ -10,7 +10,8 @@
  * @return {number}
  */
 var evalRPN = function(tokens) {
-
+    let arr = ["+", "-", "/", "*"]
+    
 };
 // @lc code=end
 
