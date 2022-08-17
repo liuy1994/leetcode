@@ -43,4 +43,4 @@ var twoSum = function(nums, target) {
 };
 // @lc code=end
 
-// console.log(twoSum([2,7,11,15]))
+// console.log(twoSum([2,7,11,15], 9))
