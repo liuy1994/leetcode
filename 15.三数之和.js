@@ -10,26 +10,45 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    // if (nums.length === 3000){
-    //     return 
-    // }
-    let res = {}
+    // let res = {}
     nums.sort((a,b) => a-b)
-    let len = nums.length
-    for (let i=0;i<len-2;i++) {
-        let k=len-1
-        for (let j=i+1;j<k;j++) {
-            while((nums[i]+nums[j]+nums[k]) > 0) {
-                k--
-            }
-            if (j>=k) break
-            if (nums[i]+nums[j]+nums[k] === 0) {
-                let key = [nums[i],nums[j],nums[k]].join(',')
-                res[key] = 1
+    // let len = nums.length
+    // if (nums[0] > 0) {
+    //     return []
+    // }
+    // for (let i=0;i<len-2;i++) {
+    //     let k=len-1
+    //     for (let j=i+1;j<k;j++) {
+    //         while((nums[i]+nums[j]+nums[k]) > 0) {
+    //             k--
+    //         }
+    //         if (j>=k) break
+    //         if (nums[i]+nums[j]+nums[k] === 0) {
+    //             let key = [nums[i],nums[j],nums[k]].join(',')
+    //             res[key] = 1
+    //         }
+    //     }
+    // }
+    // return Object.keys(res).map(v => v.split(','))
+    let res = []
+    for (let i=0;i<nums.length;i++) {
+        let l = i+1,r = nums.length - 1
+        const current = 0 - nums[i]
+        while(l < r) {
+            const sum = nums[l] + nums[r]
+            const key = `${nums[i]}~${nums[l]}~${nums[r]}`
+            if (sum === current) {
+                !res.includes(key) && res.push(key)
+                l++
+            } else if (sum > current) {
+                r--
+            } else {
+                l++
             }
         }
     }
-    return Object.keys(res).map(v => v.split(','))
+    // return Object.keys(res).map(t => t.split("~"))
+    return res.map((t) => t.split("~"))
 };
 // @lc code=end
 
