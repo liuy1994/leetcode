@@ -11,26 +11,16 @@
  */
 const arr = ['', '', 'abc','def', 'ghi','jkl','mno', 'pqrs', 'tuv', 'wxyz']
 
-let deal = (num, str = []) => {
-    let lettes = arr[num].split('')
-    let z = lettes.map(v => {
-        if (str.length) {
-            return str.map(t => t+v).join(',')
-        } else {
-            return v
-        }
-    }).toString().split(',')
-    return z
-}
 var letterCombinations = function(digits) {
-
-    digits = digits.toString().split('')
-    let res = []
-    while(digits.length) {
-        res = deal(digits.shift(), res)
+    if (digits.length === 0) return []
+    let strs = []
+    for (let i of digits) {
+        strs.push(arr[+i])
     }
-    return res
-};
+    return strs.reduce((prev, current) => {
+        return current.split("").map((v) => prev.map(t => t + v)).flat(1)
+    }, [""])
+}
 // @lc code=end
 
-// console.log(letterCombinations(23))
+// console.log(letterCombinations("23"))
