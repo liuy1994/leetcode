@@ -19,20 +19,9 @@
 var swapPairs = function(head) {
     if (!head || !head.next) return head
     let next = head.next
-    // next.next = swapPairs(next.next)
     head.next = swapPairs(next.next)
     next.next = head
-
-
     return next
-    // let pos = head
-    // while(pos && pos.next) {
-    //     let temp = pos.next.val
-    //     pos.next.val = pos.val
-    //     pos.val = temp
-    //     pos = pos.next.next
-    // }
-    // return head
 };
 // @lc code=end
 
