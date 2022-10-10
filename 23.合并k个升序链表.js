@@ -12,21 +12,38 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
+ var mergeTwoLists = function(list1, list2) {
+    let res = {}
+    let p = res
+    if (!list1 && !list2) return null
+    while(list1 && list2) {
+        if (list1.val <= list2.val) {
+            p.next = list1
+            list1 = list1.next
+        } else {
+            p.next = list2
+            list2 = list2.next
+        }
+        p = p.next
+    }
+    if (list1) p.next = list1
+    if (list2) p.next = list2
+    return res.next
+};
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
 var mergeKLists = function(lists) {
-    let r = new ListNode()
-    let pos = r
-    let list = lists.toString().split(',')
-    console.log(list)
-    while(list.length) {
-        pos.next = new ListNode(list.shift())
-        pos = pos.next
+    lists = lists.filter(el => !!el)
+    if (!lists.length) return null
+    let res = lists[0]
+    for (let i = 1; i< lists.length;i++) {
+        res = mergeTwoLists(res, lists[i])
     }
-
-    return r.next
+    return res
+    
 };
 // @lc code=end
 
