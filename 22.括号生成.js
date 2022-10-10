@@ -11,21 +11,20 @@
  */
 var generateParenthesis = function(n) {
     let res = []
-    let deal = (str, l, r) => {
-        if (l > n || r > n) {
-            return 
+    let deal = (str = "", l = 0, r = 0) => {
+        if (l <= n && r <= n) {
+            if (l === n && r === n) {
+                res.push(str)
+            } else if (l >= r) {
+                deal(str + ")", l, r + 1)
+                deal(str + "(", l + 1, r)
+            }
         }
-        if (l === n && r === n) {
-            res.push(str)
-        }
-        if (l>=r) {
-            deal(str+'(', l+1,r)
-            deal(str+')',l,r+1)
-        }
+        
     }
-    deal('',0,0)
+    deal()
     return res
 };
 // @lc code=end
 
-// console.log(generateParenthesis(3))
+// console.log(JSON.stringify(generateParenthesis(7)))
