@@ -10,12 +10,13 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var nextPermutation = function(nums) {
+    // 如果已经是最大了，返回最小的
     if (nums.toString() === [...nums].sort((a,b) => b-a).toString()) {
         nums.sort((a,b) => a-b)
     } else {
         for (let i=nums.length-1;i>0;i--) {
             if (nums[i] > nums[i-1]) {
-                let min = nums.slice(i).filter(v => v>nums[i-1]).sort((a,b) => a-b)[0]
+                let min = Math.min(...nums.slice(i).filter(v => v>nums[i-1]))
                 let index = nums.lastIndexOf(min);
                 [nums[i-1],nums[index]] = [nums[index], nums[i-1]]
                 let arr = nums.splice(i, nums.length)
@@ -25,7 +26,7 @@ var nextPermutation = function(nums) {
         }
     }
     
-    return nums
+
 };
 // @lc code=end
 
