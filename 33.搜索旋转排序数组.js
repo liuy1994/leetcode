@@ -11,11 +11,36 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    // let res= 0
+    // return nums.indexOf(target)
+    let l = 0, r = nums.length - 1, mid = Math.floor((l+r)/2)
 
-    // return res
-    return nums.indexOf(target)
+   while(l < r) {
+    if (nums[mid] === target) {
+        return mid
+    }
+    if (nums[mid] > nums[l]) {
+        // 左边有序
+        if (nums[l] <= target && nums[mid] > target) {
+            // 在左边
+            r = mid - 1
+        } else {
+            l = mid + 1
+            // 在右边
+        }
+    } else {
+        // 右边有序
+        if (nums[mid] < target && nums[r] >= target) {
+            // 在右边
+            l = mid + 1
+        } else {
+            // 在左边
+            r = mid - 1
+        }
+    }
+    mid = Math.floor((l+r)/2)
+   }
+   return -1
 };
 // @lc code=end
 
-// console.log(search([4,5,6,7,0,1,2], 0))
+console.log(search([4,5,6,7,0,1,2], 0))
