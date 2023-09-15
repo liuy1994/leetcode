@@ -19,21 +19,19 @@
 }
 var isValid = function(s) {
     let stack = []
-    let res = true
     for (let str of s) {
         if (["{","[","("].includes(str)) {
             stack.unshift(str)
         } else {
             if (map[str] !== stack[0]) {
-                res = false
-                break
+                return false
             } else {
                 stack.shift()
             }
         }
         
     }
-    return res && stack.length === 0
+    return stack.length === 0
 };
 // @lc code=end
 // console.log(isValid("()[]{}["))

@@ -10,20 +10,34 @@
  * @return {number[]}
  */
 var plusOne = function(digits) {
-  const length = digits.length;
-  for(let i = length - 1; i>=0;i--) {
-    if (digits[i] !== 9) {
-      digits[i] += 1;
-      break;
+  let p = digits.length - 1
+  while(p >= 0) {
+    console.log(p)
+    if (digits[p] !== 9) {
+      digits[p] += 1
+      return digits
     } else {
-      digits[i] = 0;
-      if (i === 0) {
+      digits[p] = 0
+      if (p === 0) {
         digits.unshift(1)
       }
+      p--
     }
   }
-  return digits;
-  
+  return digits
+  // const length = digits.length;
+  // for(let i = length - 1; i>=0;i--) {
+  //   if (digits[i] !== 9) {
+  //     digits[i] += 1;
+  //     break;
+  //   } else {
+  //     digits[i] = 0;
+  //     if (i === 0) {
+  //       digits.unshift(1)
+  //     }
+  //   }
+  // }
+  // return digits;
 };
-console.log(plusOne([1,2,3]))
 // @lc code=end
+// console.log(plusOne([9,9]))

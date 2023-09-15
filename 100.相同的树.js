@@ -66,16 +66,10 @@
  */
 
 var isSameTree = function(p, q) {
-  let flag = false
-  if (!q && !p) {
-    flag = true
-  }
-  if (p && q && p.val === q.val) {
-    flag = isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
-  }
-
-
-  return flag
+  if (!q && !p) return true
+  if (!q || !p) return false
+  if(p.val !== q.val) return false
+ return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 };
 // @lc code=end
 

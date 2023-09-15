@@ -36,30 +36,30 @@
  * @return {string}
  */
 var addBinary = function(a, b) {
-  let res = '';
-  let length = a.length > b.length ? a.length : b.length;
-  a = a.padStart(length, '0');
-  b = b.padStart(length, '0');
-  for (let i =0; i < length; i++) {
-    res += (parseInt(a[i] || 0, 10) + parseInt(b[i] || 0, 10)).toString();
-  }
-  res = res.split('').map(v => parseInt(v, 10))
-  console.log(res)
-  let first = 0;
-  for(let i = res.length -1; i> -1;i--) {
-    while(res[i] >= 2) {
-      res[i] -= 2;
-      if (i === 0) {
-        first += 1;
-      } else {
-        res[i-1] += 1;
+  const len = Math.max(a.length, b.length)
+  a = a.padStart(len, "0")
+  b = b.padStart(len, "0")
+
+  let p = len - 1
+  let res = ""
+  let base = 0
+  while(p >= 0) {
+    const sum = +a[p] + +b[p] + base
+    if (sum >= 2) {
+      res = sum % 2 + res
+      base = 1
+      if (p === 0) {
+        res = base + res
       }
+    } else {
+      base = 0
+      res = sum + res
     }
-    // console.log(res)
+    p--
   }
-  return (first ? [first, ...res] : res).join('') 
-};
-// addBinary('1010','1011')
-console.log(addBinary('0','0'))
+  return res
+}
 // @lc code=end
+
+// console.log(addBinary('1010','1011'))
 

@@ -1,3 +1,4 @@
+
 /*
  * @lc app=leetcode.cn id=83 lang=javascript
  *
@@ -43,15 +44,15 @@
 
 
 var deleteDuplicates = function(head) {
-  let current = head
-  while(current && current.next) {
-    if (current.val === current.next.val) {
-      current.next = current.next.next
+  let p = head
+  if(!p || !p.next) return p
+  while(p.next) {
+    if (p.val === p.next.val) {
+      p.next = p.next.next
     } else {
-      current = current.next
+      p = p.next
     }
   }
-  
 
 
   return head

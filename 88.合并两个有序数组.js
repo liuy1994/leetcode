@@ -41,10 +41,26 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-  nums1.splice(m, n)
-  nums1.push(...nums2)
-  nums1.sort((a,b) => a-b)
+  // nums1.splice(m, n)
+  // nums1.push(...nums2)
+  // nums1.sort((a,b) => a-b)
   
+  let p = 0, q = 0
+  while(p<= m+q && q < n && n > 0) {
+    if (nums1[p] >= nums2[q]) {
+      nums1.splice(p, 0, nums2[q])
+      p++
+  
+      q++
+    } else if (nums1[p] < nums2[q]) {
+      p++
+    }
+  }
+  if (q < n) {
+
+    nums1.splice(p-1,0, ...nums2.slice(q))
+  }
+  nums1.splice(m+n)
+  // return nums1
 };
 // @lc code=end
-

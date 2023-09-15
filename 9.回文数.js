@@ -10,7 +10,15 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    return x.toString() === x.toString().split("").reverse().join("")
+    if (x < 0) return false
+    if (x<10) return true
+    x = x.toString()
+    const len = parseInt(x.length / 2)
+    // return x === x.split("").reverse().join("")
+    for (let i=0;i<len;i++) {
+        if (x[i] !== x[x.length - i - 1]) return false
+    }
+    return true
 };
 // @lc code=end
 
